@@ -28,9 +28,6 @@ input:disabled {
 input:hover {
   box-shadow: 0 0 0 1px var(--color-grey-3);
 }
-input:focus {
-  box-shadow: 0 0 0 2px var(--color-grey-4);
-}
-input::content {
+input:focus-visible {
   box-shadow: 0 0 0 1px var(--color-black-2);
 }
