@@ -1,0 +1,88 @@
+.variant-primary {
+  width: 73px;
+  height: 32px;
+  background: var(--color-grey-5);
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  color: var(--color-white);
+  transition: all 0.3s ease;
+}
+.variant-primary:hover {
+  background-color: var(--color-black-2);
+}
+.variant-primary:focus {
+  box-shadow: 0 0 0 2px var(--color-blue);
+  background: var(--color-grey-5);
+}
+.variant-primary:disabled {
+  background-color: var(--color-grey-4);
+}
+.variant-text {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: var(--color-grey-5);
+  background-color: transparent;
+  cursor: pointer;
+  width: 97px;
+  height: 24px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+.variant-text:hover {
+  color: var(--color-black-2);
+}
+.variant-text:focus {
+  box-shadow: 0 0 0 2px var(--color-blue);
+  background-color: transparent;
+}
+.variant-text:disabled {
+  color: var(--color-grey-4);
+}
+.variant-icon {
+  cursor: pointer;
+  position: relative;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 6px;
+  fill: var(--color-grey-5);
+}
+.icon {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transition: all 0.3s ease;
+}
+.variant-icon:hover {
+  fill: var(--color-black-2);
+}
+.variant-icon:focus {
+  box-shadow: 0 0 0 2px var(--color-blue);
+  fill: var(--color-grey-5);
+}
+.icon-small {
+  width: 16px;
+  height: 4px;
+}
+.icon-medium {
+  width: 14px;
+  height: 14px;
+}
+.icon-large {
+  width: 20px;
+  height: 20px;
+}
+.button-small {
+  padding: 8px 10px;
+}
+.button-medium {
+  padding: 12px 12px;
+}
+.button-large {
+  padding: 16px 16px;
+}
