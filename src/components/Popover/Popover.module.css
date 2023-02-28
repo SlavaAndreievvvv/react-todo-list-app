@@ -1,0 +1,30 @@
+.popover {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  width: 114px;
+  left: 279px;
+  top: -13px;
+  background: var(--color-white);
+  box-shadow: 0px 4px 13px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+.popoverText {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: var(--color-grey-5);
+  width: 100%;
+  text-align: start;
+  padding: 0 8px;
+}
+.popoverText:not(:last-child) {
+  margin-bottom: 9px;
+  background: var(--color-grey-2);
+}

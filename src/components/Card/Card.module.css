@@ -1,0 +1,48 @@
+.card {
+  max-width: 441px;
+  height: 100%;
+  left: 20px;
+  top: 20px;
+  background: var(--color-orange-2);
+  border-radius: 8px;
+  padding: 16px 24px;
+}
+.cardTitle {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21px;
+  color: var(--color-grey-6);
+}
+.cardText {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: var(--color-grey-5);
+  margin-bottom: 16px;
+}
+.cardTextCheck {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: var(--color-grey-5);
+  margin-bottom: 16px;
+  text-decoration: line-through;
+}
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.cardFooter {
+  display: flex;
+  justify-content: space-between;
+}
+.cardColorWrapper {
+  display: flex;
+}
+.cardColor:not(:last-child) {
+  margin-right: 8px;
+}
+.popoverWrapper {
+  position: relative;
+}
