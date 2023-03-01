@@ -30,4 +30,5 @@ export const Popover = ({ className, onClosePopover, onClick }) => {
 Popover.propTypes = {
   className: PropTypes.string,
   onClosePopover: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
