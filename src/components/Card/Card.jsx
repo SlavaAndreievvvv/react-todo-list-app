@@ -28,7 +28,7 @@ export const Card = ({ text, title }) => {
           />
         </div>
         <div className={styles.popoverWrapper}>
-          {isPopoverVisible && <Popover onClosePopup={togglePopover} />}
+          {isPopoverVisible && <Popover onClosePopover={togglePopover} />}
         </div>
         <p className={check ? styles.cardTextCheck : styles.cardText}>{text}</p>
         <div className={styles.cardFooter}>

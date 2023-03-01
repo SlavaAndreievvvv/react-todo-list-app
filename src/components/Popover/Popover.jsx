@@ -3,12 +3,12 @@ import clsx from "clsx";
 import styles from "./Popover.module.css";
 import { useState, useRef, useEffect } from "react";
 
-export const Popover = ({ className, onClosePopup }) => {
+export const Popover = ({ className, onClosePopover }) => {
   const wrapperRef = useRef(null);
 
   const handleOutsideClick = (event) => {
     if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
-      onClosePopup();
+      onClosePopover();
     }
   };
 
@@ -27,4 +27,5 @@ export const Popover = ({ className, onClosePopup }) => {
 };
 Popover.propTypes = {
   className: PropTypes.string,
+  onClosePopover: PropTypes.func.isRequired,
 };
