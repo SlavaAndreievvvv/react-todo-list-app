@@ -14,6 +14,8 @@ export const Card = ({ text, title }) => {
   const onClose = () => setIsCardVisible(!isCardVisible);
   const [isPopoverVisible, setIsPopoverVisible] = useState(false);
   const togglePopover = () => setIsPopoverVisible(!isPopoverVisible);
+  const [isPopupVisible, setIsPopupVisible] = useState(false);
+  const openPopup = () => setIsPopupVisible(!isPopupVisible);
 
   return (
     isCardVisible && (
@@ -28,7 +30,9 @@ export const Card = ({ text, title }) => {
           />
         </div>
         <div className={styles.popoverWrapper}>
-          {isPopoverVisible && <Popover onClosePopover={togglePopover} />}
+          {isPopoverVisible && (
+            <Popover onClosePopover={togglePopover} onClick={openPopup} />
+          )}
         </div>
         <p className={check ? styles.cardTextCheck : styles.cardText}>{text}</p>
         <div className={styles.cardFooter}>
@@ -46,7 +50,7 @@ export const Card = ({ text, title }) => {
             Done
           </Checkbox>
         </div>
-        {check && <PopupDelete onClick={onClose} />}
+        {isPopupVisible && <PopupDelete onClick={onClose} />}
       </div>
     )
   );

@@ -3,7 +3,7 @@ import clsx from "clsx";
 import styles from "./Popover.module.css";
 import { useState, useRef, useEffect } from "react";
 
-export const Popover = ({ className, onClosePopover }) => {
+export const Popover = ({ className, onClosePopover, onClick }) => {
   const wrapperRef = useRef(null);
 
   const handleOutsideClick = (event) => {
@@ -21,7 +21,9 @@ export const Popover = ({ className, onClosePopover }) => {
   return (
     <div ref={wrapperRef} className={clsx(styles.popover, className)}>
       <button className={styles.popoverText}>Edit</button>
-      <button className={styles.popoverText}>Delete</button>
+      <button className={styles.popoverText} onClick={onClick}>
+        Delete
+      </button>
     </div>
   );
 };
