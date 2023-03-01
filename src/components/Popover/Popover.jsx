@@ -1,11 +1,25 @@
 import PropTypes from "prop-types";
 import clsx from "clsx";
 import styles from "./Popover.module.css";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
-export const Popover = ({ className }) => {
+export const Popover = ({ className, onClosePopup }) => {
+  const wrapperRef = useRef(null);
+
+  const handleOutsideClick = (event) => {
+    if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
+      onClosePopup();
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mouseup", handleOutsideClick);
+    return () => {
+      document.removeEventListener("mouseup", handleOutsideClick);
+    };
+  }, []);
   return (
-    <div className={clsx(styles.popover, className)}>
+    <div ref={wrapperRef} className={clsx(styles.popover, className)}>
       <button className={styles.popoverText}>Edit</button>
       <button className={styles.popoverText}>Delete</button>
     </div>
