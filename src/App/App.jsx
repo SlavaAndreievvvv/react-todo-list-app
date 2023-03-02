@@ -13,16 +13,23 @@ export const App = () => {
 
   return (
     <div className="App">
-      <Input value={inputValue} onChange={setInputValue} />
+      <Input
+        type="text"
+        value={inputValue}
+        onChange={setInputValue}
+        placeholder="Placeholder"
+      />
       <div className="row">
         <Checkbox checked={check} onChange={setCheck}>
           Done
         </Checkbox>
         <Button>Button</Button>
-        <Button variant="text">Add New Task</Button>
+        <Button variant="text">Cancel</Button>
         <Button variant="icon" icon="more" size="small" />
         <Button variant="icon" icon="close" size="medium" />
         <Button variant="icon" icon="add" size="large" />
+        <Button variant="danger">Button</Button>
+        <Button variant="dashed">Button</Button>
       </div>
       <Card
         title="Title"

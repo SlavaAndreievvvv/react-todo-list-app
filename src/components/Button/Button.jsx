@@ -21,17 +21,13 @@ export const Button = ({
         className,
         styles.button,
         styles[`variant-${variant}`],
-        styles[`button-${size}`]
+        styles[`button-${size}`],
+        { [styles.hasIcon]: icon && variant !== "icon" }
       )}
       disabled={disabled}
     >
-      {children}
-      {icon ? (
-        <Icon
-          name={icon}
-          className={clsx(styles[`icon-${size}`], styles.icon)}
-        />
-      ) : null}
+      {variant !== "icon" && <span>{children}</span>}
+      {!!icon && <Icon name={icon} className={styles.icon} />}
     </button>
   );
 };
@@ -41,7 +37,7 @@ Button.propType = {
   className: PropTypes.string,
   onClick: PropTypes.func,
   children: PropTypes.string.isRequired,
-  variant: PropTypes.oneOf(["primary", "text", "icon"]),
+  variant: PropTypes.oneOf(["primary", "text", "icon", "danger", "dashed"]),
   size: PropTypes.oneOf(["large", "medium", "small"]),
   icon: PropTypes.oneOf(ICON_TYPES),
 };

@@ -3,15 +3,3 @@
   height: 28px;
   border-radius: 50%;
 }
-.purple {
-  background: var(--color-purple);
-}
-.blue {
-  background: var(--color-blue-2);
-}
-.orange {
-  background: var(--color-orange);
-}
-.green {
-  background: var(--color-green);
-}

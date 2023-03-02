@@ -27,24 +27,8 @@
 .buttonWrapper {
   display: flex;
   justify-content: center;
-}
-.button {
-  padding: 9px 16px;
-  width: 73px;
-  border-radius: 8px;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 14px;
+  align-items: center;
 }
 .button:first-child {
-  margin-right: 8px;
-}
-.buttonYes {
-  background: var(--color-grey-5);
-  color: var(--color-white);
-}
-.buttonNo {
-  background: var(--color-white);
-  color: var(--color-grey-5);
+  margin-right: 40px;
 }
