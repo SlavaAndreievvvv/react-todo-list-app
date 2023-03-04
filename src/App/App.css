@@ -10,4 +10,8 @@
   display: flex;
   width: 60vw;
   justify-content: space-around;
+  align-items: center;
+}
+.open-popup {
+  overflow-y: hidden;
 }
