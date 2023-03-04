@@ -43,7 +43,6 @@ export const PopupDelete = ({ title, onDeleted }) => {
 };
 
 PopupDelete.propTypes = {
-  onDelete: PropTypes.func.isRequired,
-  onClose: PropTypes.func.isRequired,
+  onDeleted: PropTypes.func.isRequired,
   title: PropTypes.node,
 };
