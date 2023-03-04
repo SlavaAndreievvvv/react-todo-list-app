@@ -11,12 +11,13 @@ export const Input = ({
   id,
   name,
   type,
+  size,
 }) => {
   return (
     <input
       placeholder={placeholder}
       type={type}
-      className={clsx(className, styles.input)}
+      className={clsx(className, styles.input, styles[size])}
       value={value}
       onChange={(e) => onChange(e.target.value)}
       disabled={disabled}
@@ -35,4 +36,5 @@ Input.propTypes = {
   id: PropTypes.string,
   name: PropTypes.string,
   type: PropTypes.string,
+  size: PropTypes.string,
 };

@@ -46,3 +46,9 @@
 .popoverWrapper {
   position: relative;
 }
+.wrapperButton {
+  display: flex;
+}
+.cardButton:not(:last-child) {
+  margin-right: 10px;
+}

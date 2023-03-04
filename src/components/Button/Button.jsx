@@ -21,13 +21,20 @@ export const Button = ({
         className,
         styles.button,
         styles[`variant-${variant}`],
-        styles[`button-${size}`],
-        { [styles.hasIcon]: icon && variant !== "icon" }
+        styles[`button-${size}`]
+        // { [styles.hasIcon]: icon && variant !== "icon" }
       )}
       disabled={disabled}
     >
+      {!!icon && (
+        <Icon
+          name={icon}
+          className={clsx(styles.icon, {
+            [styles.hasIcon]: icon && variant !== "icon",
+          })}
+        />
+      )}
       {variant !== "icon" && <span>{children}</span>}
-      {!!icon && <Icon name={icon} className={styles.icon} />}
     </button>
   );
 };

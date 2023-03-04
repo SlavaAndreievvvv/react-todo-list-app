@@ -5,37 +5,31 @@ import styles from "./Card.module.css";
 import { Button } from "../Button";
 import { ColorDot } from "../ColorDot";
 import { Checkbox } from "../Checkbox";
-import { PopupDelete } from "../PopupDelete";
-import { Popover } from "../Popover";
 
-export const Card = ({ text, title }) => {
+export const Card = ({ text, title, onDelete }) => {
   const [check, setCheck] = useState(false);
-  // const [isCardVisible, setIsCardVisible] = useState(true);
-  // // const onDelete = () => setIsCardVisible(!isCardVisible);
-  // // // const [isPopoverVisible, setIsPopoverVisible] = useState(false);
-  // // // const togglePopover = () => setIsPopoverVisible(!isPopoverVisible);
-  // // const [isPopupVisible, setIsPopupVisible] = useState(false);
-  // // const openPopup = () => setIsPopupVisible(!isPopupVisible);
-  // // const [onClosePopup, setonClosePopup] = useState(true);
-  // // const onClose = () => setonClosePopup(!onClosePopup);
-
-  const [isPopoverVisible, setIsPopoverVisible] = useState(false);
-  const togglePopover = () => setIsPopoverVisible(!isPopoverVisible);
 
   return (
     <div className={styles.card}>
       <div className={styles.cardHeader}>
         <p className={styles.cardTitle}>{title}</p>
-        <Button
-          onClick={togglePopover}
-          variant="icon"
-          icon="more"
-          size="small"
-        />
+        <div className={styles.wrapperButton}>
+          <Button
+            className={styles.cardButton}
+            variant="icon"
+            icon="pencil"
+            size="small"
+          />
+          <Button
+            className={styles.cardButton}
+            onClick={onDelete}
+            variant="icon"
+            icon="trash"
+            size="small"
+          />
+        </div>
       </div>
-      <div className={styles.popoverWrapper}>
-        {isPopoverVisible && <Popover onClosePopover={togglePopover} />}
-      </div>
+      <div className={styles.popoverWrapper}></div>
       <p className={check ? styles.cardTextCheck : styles.cardText}>{text}</p>
       <div className={styles.cardFooter}>
         <div className={styles.cardColorWrapper}>
@@ -59,4 +53,5 @@ export const Card = ({ text, title }) => {
 Card.propTypes = {
   text: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
+  onDelete: PropTypes.func,
 };

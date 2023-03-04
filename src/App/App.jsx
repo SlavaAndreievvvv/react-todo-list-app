@@ -1,15 +1,22 @@
 import PropTypes from "prop-types";
 import clsx from "clsx";
 import "./App.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Input } from "../components/Input";
 import { Checkbox } from "../components/Checkbox";
 import { Button } from "../components/Button";
 import { Card } from "../components/Card";
+import { PopupDelete } from "../components/PopupDelete";
 
 export const App = () => {
   const [inputValue, setInputValue] = useState("");
   const [check, setCheck] = useState(false);
+  const [onDelete, setOnDelete] = useState(false);
+  const [onDeleted, setIsDeleted] = useState(true);
+
+  useEffect(() => {
+    return () => setOnDelete(false);
+  }, [onDeleted]);
 
   return (
     <div className="App">
@@ -29,12 +36,23 @@ export const App = () => {
         <Button variant="icon" icon="close" size="medium" />
         <Button variant="icon" icon="add" size="large" />
         <Button variant="danger">Button</Button>
-        <Button variant="dashed">Button</Button>
+        <Button variant="dashed" icon="add">
+          Button
+        </Button>
       </div>
-      <Card
-        title="Title"
-        text="Lorem ipsum dolor sit amet consectetur. Hendrerit metus etiam in sed vulputate tellus diam dui. "
-      />
+      {onDeleted && (
+        <Card
+          title="Title"
+          text="Lorem ipsum dolor sit amet consectetur. Hendrerit metus etiam in sed vulputate tellus diam dui. "
+          onDelete={() => setOnDelete(!onDelete)}
+        />
+      )}
+      {onDelete && (
+        <PopupDelete
+          onDeleted={() => setIsDeleted(!onDeleted)}
+          title="Do you really want to delete this task?"
+        />
+      )}
     </div>
   );
 };
