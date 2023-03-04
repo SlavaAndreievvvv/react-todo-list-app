@@ -12,7 +12,7 @@ export const App = () => {
   const [inputValue, setInputValue] = useState("");
   const [check, setCheck] = useState(false);
   const [onDelete, setOnDelete] = useState(false);
-  const [onDeleted, setIsDeleted] = useState(true);
+  const [onDeleted, setOnDeleted] = useState(true);
 
   useEffect(() => {
     return () => setOnDelete(false);
@@ -49,7 +49,7 @@ export const App = () => {
       )}
       {onDelete && (
         <PopupDelete
-          onDeleted={() => setIsDeleted(!onDeleted)}
+          onDeleted={() => setOnDeleted(!onDeleted)}
           title="Do you really want to delete this task?"
         />
       )}
