@@ -5,14 +5,21 @@ import { useEffect, useState } from "react";
 import { Input } from "../components/Input";
 import { Checkbox } from "../components/Checkbox";
 import { Button } from "../components/Button";
-import { Card } from "../components/Card";
+import { TodoCard } from "../components/TodoCard";
 import { PopupDelete } from "../components/PopupDelete";
+import { EditableButton } from "../components/EditableButton";
 
 export const App = () => {
   const [inputValue, setInputValue] = useState("");
   const [check, setCheck] = useState(false);
   const [onDelete, setOnDelete] = useState(false);
   const [onDeleted, setOnDeleted] = useState(true);
+  const [newValue, setNewValue] = useState("");
+  const [done, onDoneChange] = useState(false);
+
+  const onSave = async () => {
+    return true;
+  };
 
   useEffect(() => {
     return () => setOnDelete(false);
@@ -41,10 +48,14 @@ export const App = () => {
         </Button>
       </div>
       {onDeleted && (
-        <Card
+        <TodoCard
           title="Title"
           text="Lorem ipsum dolor sit amet consectetur. Hendrerit metus etiam in sed vulputate tellus diam dui. "
           onDelete={() => setOnDelete(!onDelete)}
+          onEdit={() => undefined}
+          done={done}
+          onDoneChange={onDoneChange}
+          tags={[]}
         />
       )}
       {onDelete && (
@@ -53,6 +64,14 @@ export const App = () => {
           title="Do you really want to delete this task?"
         />
       )}
+      <EditableButton
+        icon="add"
+        value={newValue}
+        onChange={setNewValue}
+        onSave={onSave}
+      >
+        add new task
+      </EditableButton>
     </div>
   );
 };

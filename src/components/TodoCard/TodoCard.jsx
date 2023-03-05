@@ -1,20 +1,27 @@
 import PropTypes from "prop-types";
 import clsx from "clsx";
 import { useState } from "react";
-import styles from "./Card.module.css";
+import styles from "./TodoCard.module.css";
 import { Button } from "../Button";
 import { ColorDot } from "../ColorDot";
 import { Checkbox } from "../Checkbox";
 
-export const Card = ({ text, title, onDelete }) => {
-  const [check, setCheck] = useState(false);
-
+export const TodoCard = ({
+  text,
+  title,
+  tags,
+  onDelete,
+  onEdit,
+  done,
+  onDoneChange,
+}) => {
   return (
     <div className={styles.card}>
       <div className={styles.cardHeader}>
         <p className={styles.cardTitle}>{title}</p>
         <div className={styles.wrapperButton}>
           <Button
+            onClick={onEdit}
             className={styles.cardButton}
             variant="icon"
             icon="pencil"
@@ -30,18 +37,17 @@ export const Card = ({ text, title, onDelete }) => {
         </div>
       </div>
       <div className={styles.popoverWrapper}></div>
-      <p className={check ? styles.cardTextCheck : styles.cardText}>{text}</p>
+      <p className={done ? styles.cardTextCheck : styles.cardText}>{text}</p>
       <div className={styles.cardFooter}>
         <div className={styles.cardColorWrapper}>
-          <ColorDot className={styles.cardColor} color="#bcb9ff" />
-          <ColorDot className={styles.cardColor} color="#76b6ff" />
-          <ColorDot className={styles.cardColor} color="#ff9960" />
-          <ColorDot className={styles.cardColor} color="#a0ec83" />
+          {tags.map(({ color, id }) => (
+            <ColorDot className={styles.color} key={id} color={color} />
+          ))}
         </div>
         <Checkbox
           className={styles.cardCheckbox}
-          checked={check}
-          onChange={setCheck}
+          checked={done}
+          onChange={onDoneChange}
         >
           Done
         </Checkbox>
@@ -50,8 +56,22 @@ export const Card = ({ text, title, onDelete }) => {
   );
 };
 
-Card.propTypes = {
+TodoCard.propTypes = {
   text: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  onDelete: PropTypes.func,
+  onDelete: PropTypes.func.isRequired,
+  onEdit: PropTypes.func.isRequired,
+  onDoneChange: PropTypes.func.isRequired,
+  done: PropTypes.bool.isRequired,
+  tags: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      color: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+    })
+  ),
+};
+
+TodoCard.defaultTypes = {
+  tags: [],
 };

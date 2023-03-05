@@ -12,6 +12,7 @@ export const Button = ({
   variant,
   icon,
   size,
+  fluid,
 }) => {
   return (
     <button
@@ -21,8 +22,8 @@ export const Button = ({
         className,
         styles.button,
         styles[`variant-${variant}`],
-        styles[`button-${size}`]
-        // { [styles.hasIcon]: icon && variant !== "icon" }
+        styles[`button-${size}`],
+        { [styles.fluid]: fluid }
       )}
       disabled={disabled}
     >
@@ -47,6 +48,7 @@ Button.propType = {
   variant: PropTypes.oneOf(["primary", "text", "icon", "danger", "dashed"]),
   size: PropTypes.oneOf(["large", "medium", "small"]),
   icon: PropTypes.oneOf(ICON_TYPES),
+  fluid: PropTypes.string,
 };
 
 Button.defaultProps = {
