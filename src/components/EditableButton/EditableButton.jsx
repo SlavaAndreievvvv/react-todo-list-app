@@ -5,31 +5,14 @@ import { Button } from "../Button";
 import { Input } from "../Input";
 import styles from "./EditableButton.module.css";
 import { useEffect, useRef, useState } from "react";
+import { useEditable } from "../../hooks/useEditable";
 
-export const EditableButton = ({
-  className,
-  icon,
-  children,
-  value,
-  onChange,
-  onSave,
-}) => {
-  const inputRef = useRef(null);
-  const [isInputActive, setIsInputActive] = useState(false);
-
-  const onBlur = async () => {
-    const ok = await onSave();
-    if (ok) {
-      setIsInputActive(false);
-      onChange("");
-    }
-  };
-
-  useEffect(() => {
-    if (inputRef && isInputActive) {
-      inputRef.current.focus();
-    }
-  }, [inputRef, isInputActive]);
+export const EditableButton = ({ className, icon, children, onSave }) => {
+  const { inputRef, isInputActive, onBlur, onChange, value, setIsInputActive } =
+    useEditable({
+      onSave,
+      cleanAfterSuccess: true,
+    });
 
   return (
     <div className={clsx(className)}>
@@ -43,7 +26,7 @@ export const EditableButton = ({
         />
       ) : (
         <Button
-          onClick={() => setIsInputActive(!isInputActive)}
+          onClick={() => setIsInputActive(true)}
           fluid
           variant="dashed"
           icon={icon}
@@ -59,7 +42,5 @@ EditableButton.propTypes = {
   className: PropTypes.string,
   icon: PropTypes.oneOf(ICON_TYPES),
   children: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
   onSave: PropTypes.func.isRequired,
 };

@@ -67,7 +67,6 @@ TodoCard.propTypes = {
     PropTypes.shape({
       id: PropTypes.number,
       color: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
     })
   ),
 };

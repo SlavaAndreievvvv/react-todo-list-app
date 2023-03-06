@@ -27,7 +27,8 @@ textarea,
 input,
 select,
 label,
-p {
+p,
+span {
   font-family: var(--primary-font);
 }
 

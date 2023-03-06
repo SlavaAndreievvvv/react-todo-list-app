@@ -52,3 +52,6 @@
 .cardButton:not(:last-child) {
   margin-right: 10px;
 }
+.cardColorWrapper {
+  gap: 8px;
+}
