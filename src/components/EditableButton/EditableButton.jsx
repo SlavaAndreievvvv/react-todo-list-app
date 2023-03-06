@@ -4,7 +4,6 @@ import { ICON_TYPES } from "../Icon";
 import { Button } from "../Button";
 import { Input } from "../Input";
 import styles from "./EditableButton.module.css";
-import { useEffect, useRef, useState } from "react";
 import { useEditable } from "../../hooks/useEditable";
 
 export const EditableButton = ({ className, icon, children, onSave }) => {
