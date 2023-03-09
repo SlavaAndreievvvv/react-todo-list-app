@@ -66,6 +66,7 @@ export const useTodo = () => {
       }),
     [todos, deleteId, setTodos, setDeleteId]
   );
+
   const todoEditing = useMemo(() => {
     if (editId === "new") {
       return {};

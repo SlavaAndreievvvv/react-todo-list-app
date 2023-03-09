@@ -4,6 +4,7 @@ import { Button } from "../Button/Button";
 import { Input } from "../Input";
 import { Popup } from "../Popup";
 import { Tag } from "../Tag";
+import styles from "./PopupEdit.module.css";
 
 export const PopupEdit = ({
   onClose,
@@ -50,8 +51,8 @@ export const PopupEdit = ({
   };
 
   return (
-    <Popup>
-      <header>
+    <Popup className={styles.container}>
+      <header className={styles.header}>
         <Button onClick={onClose} variant="text">
           Cancel
         </Button>
@@ -60,18 +61,30 @@ export const PopupEdit = ({
         </Button>
       </header>
 
-      <label htmlFor="title">Title</label>
-      <Input value={state.title} onChange={onInputChange("title")} id="title" />
-
-      <label htmlFor="description">Description</label>
+      <label className={styles.text} htmlFor="title">
+        Title
+      </label>
       <Input
+        placeholder="Add a title..."
+        className={styles.input}
+        value={state.title}
+        onChange={onInputChange("title")}
+        id="title"
+      />
+
+      <label className={styles.text} htmlFor="description">
+        Description
+      </label>
+      <Input
+        placeholder="Add a description..."
+        className={styles.input}
         value={state.text}
         onChange={onInputChange("text")}
         id="description"
       />
 
-      <p>Tags</p>
-      <div>
+      <p className={styles.text}>Tags</p>
+      <div className={styles.tagsList}>
         {tags.map((tag) => {
           return (
             <Tag

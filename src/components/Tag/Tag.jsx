@@ -71,7 +71,7 @@ export const Tag = ({
 
   return (
     <div
-      className={clsx(styles.container, { [styles.active]: active, className })}
+      className={clsx(styles.container, className, { [styles.active]: active })}
     >
       <div className={styles.inner}>
         <ColorDot className={styles.color} color={color} />

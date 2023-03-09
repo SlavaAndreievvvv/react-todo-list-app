@@ -5,9 +5,10 @@ import { deleteItemFromArray } from "../utils/deleteItemFromArray";
 
 export const useTags = () => {
   const [tags, setTags] = useState([
-    { id: 1, color: "blue", name: "work" },
-    { id: 2, color: "green", name: "study" },
-    { id: 3, color: "red", name: "family" },
+    { id: 1, color: "#BCB9FF", name: "work" },
+    { id: 2, color: "#76B6FF", name: "study" },
+    { id: 3, color: "#FF9960", name: "family" },
+    { id: 4, color: "#A0EC83", name: "entertainment" },
   ]);
 
   const [deletingId, setDeletingId] = useState(null);
