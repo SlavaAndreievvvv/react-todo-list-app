@@ -16,7 +16,7 @@ export const TodoCard = ({
   onDoneChange,
 }) => {
   return (
-    <div className={styles.card}>
+    <div className={clsx(styles.card, { [styles.done]: done })}>
       <div className={styles.cardHeader}>
         <p className={styles.cardTitle}>{title}</p>
         <div className={styles.wrapperButton}>
@@ -37,7 +37,7 @@ export const TodoCard = ({
         </div>
       </div>
       <div className={styles.popoverWrapper}></div>
-      <p className={done ? styles.cardTextCheck : styles.cardText}>{text}</p>
+      <p className={styles.cardText}>{text}</p>
       <div className={styles.cardFooter}>
         <div className={styles.cardColorWrapper}>
           {tags.map(({ color, id }) => (

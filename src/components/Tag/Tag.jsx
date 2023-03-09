@@ -17,10 +17,16 @@ export const Tag = ({
   onDelete,
   isEditable,
 }) => {
-  const { inputRef, isInputActive, onBlur, onChange, value, setIsInputActive } =
-    useEditable({
-      onSave,
-    });
+  const {
+    inputRef,
+    isInputActive,
+    handleSave,
+    onChange,
+    value,
+    setIsInputActive,
+  } = useEditable({
+    onSave,
+  });
 
   useEffect(() => {
     onChange(children);
@@ -33,9 +39,10 @@ export const Tag = ({
           size="small"
           className={styles.input}
           ref={inputRef}
-          onBlur={onBlur}
+          onBlur={handleSave}
           value={value}
           onChange={onChange}
+          onEnterPress={handleSave}
         />
       );
     }
@@ -86,7 +93,7 @@ Tag.propTypes = {
   children: PropTypes.string.isRequired,
   active: PropTypes.bool,
   color: PropTypes.string.isRequired,
-  onSave: PropTypes.func.isRequired,
+  onSave: PropTypes.func,
   onDelete: PropTypes.func,
   isEditable: PropTypes.bool,
 };

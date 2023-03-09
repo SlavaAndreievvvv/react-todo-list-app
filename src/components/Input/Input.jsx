@@ -16,9 +16,16 @@ export const Input = forwardRef(
       type,
       size,
       onBlur,
+      onEnterPress,
     },
     ref
   ) => {
+    const onKeyUp = (e) => {
+      if (e.keyCode === 13 && onEnterPress) {
+        onEnterPress();
+      }
+    };
+
     return (
       <input
         ref={ref}
@@ -31,6 +38,7 @@ export const Input = forwardRef(
         id={id}
         name={name}
         onBlur={onBlur}
+        onKeyUp={onKeyUp}
       />
     );
   }
@@ -47,6 +55,7 @@ Input.propTypes = {
   type: PropTypes.string,
   size: PropTypes.oneOf(["large", "small"]),
   onBlur: PropTypes.func,
+  onEnterPress: PropTypes.func,
 };
 
 Input.defaultProps = {

@@ -7,18 +7,25 @@ import styles from "./EditableButton.module.css";
 import { useEditable } from "../../hooks/useEditable";
 
 export const EditableButton = ({ className, icon, children, onSave }) => {
-  const { inputRef, isInputActive, onBlur, onChange, value, setIsInputActive } =
-    useEditable({
-      onSave,
-      cleanAfterSuccess: true,
-    });
+  const {
+    inputRef,
+    isInputActive,
+    handleSave,
+    onChange,
+    value,
+    setIsInputActive,
+  } = useEditable({
+    onSave,
+    cleanAfterSuccess: true,
+  });
 
   return (
     <div className={clsx(className)}>
       {isInputActive ? (
         <Input
           ref={inputRef}
-          onBlur={onBlur}
+          onBlur={handleSave}
+          onEnterPress={handleSave}
           value={value}
           onChange={onChange}
           size="small"

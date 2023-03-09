@@ -8,3 +8,4 @@ export * from "./PopupDelete";
 export * from "./TodoCard";
 export * from "./Tag";
 export * from "./EditableButton";
+export * from "./PopupEdit";
