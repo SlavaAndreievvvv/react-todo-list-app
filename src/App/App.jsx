@@ -12,78 +12,76 @@ import {
   Tag,
   PopupEdit,
 } from "../components";
-import { deleteItemFromArray } from "../utils/deleteItemFromArray";
-import { editItemInArray } from "../utils";
 import { useTags } from "../hooks/useTags";
+import { useTodo } from "../hooks/useTodo";
 
 export const App = () => {
   const tagsState = useTags();
+  const todosState = useTodo();
+  // const [deleteTodoId, setDeleteTodoId] = useState(null);
+  // const [todos, setTodos] = useState([
+  //   {
+  //     id: 1,
+  //     title: "todo 1",
+  //     text: "text 1",
+  //     done: false,
+  //     tags: [1, 2],
+  //   },
+  //   {
+  //     id: 2,
+  //     title: "todo 2",
+  //     text: "text 2",
+  //     done: false,
+  //     tags: [1],
+  //   },
+  //   {
+  //     id: 3,
+  //     title: "todo 3",
+  //     text: "text 3",
+  //     done: true,
+  //     tags: [2, 3],
+  //   },
+  // ]);
 
-  const [editTodoId, setEditTodoId] = useState(null);
-  const [deleteTodoId, setDeleteTodoId] = useState(null);
-  const [todos, setTodos] = useState([
-    {
-      id: 1,
-      title: "todo 1",
-      text: "text 1",
-      done: false,
-      tags: [1, 2],
-    },
-    {
-      id: 2,
-      title: "todo 2",
-      text: "text 2",
-      done: false,
-      tags: [1],
-    },
-    {
-      id: 3,
-      title: "todo 3",
-      text: "text 3",
-      done: true,
-      tags: [2, 3],
-    },
-  ]);
+  // const todoEditing = useMemo(() => {
+  //   if (editTodoId === "new") {
+  //     return {};
+  //   }
+  //   return todos.find(({ id }) => id === editTodoId);
+  // }, [editTodoId, todos]);
+
+  // const onCreateTodo = (newTodo) => {
+  //   setTodos((prevState) => [
+  //     ...prevState,
+  //     {
+  //       id: Date.now(),
+  //       done: false,
+  //       ...newTodo,
+  //     },
+  //   ]);
+  //   setEditTodoId(null);
+  // };
+
+  // const onSaveTodo = (newTodo) => {
+  //   editItemInArray({
+  //     list: todos,
+  //     item: { id: editTodoId, ...newTodo },
+  //     setState: setTodos,
+  //     onCleanup: setEditTodoId,
+  //   });
+  // };
+
+  // const onDeleteTodo = () =>
+  //   deleteItemFromArray({
+  //     list: todos,
+  //     id: deleteTodoId,
+  //     setState: setTodos,
+  //     onCleanup: setDeleteTodoId,
+  //   });
 
   const onSave = async (value) => {
     return true;
   };
-
-  const todoEditing = useMemo(() => {
-    if (editTodoId === "new") {
-      return {};
-    }
-    return todos.find(({ id }) => id === editTodoId);
-  }, [editTodoId, todos]);
-
-  const onCreateTodo = (newTodo) => {
-    setTodos((prevState) => [
-      ...prevState,
-      {
-        id: Date.now(),
-        done: false,
-        ...newTodo,
-      },
-    ]);
-    setEditTodoId(null);
-  };
-
-  const onSaveTodo = (newTodo) => {
-    editItemInArray({
-      list: todos,
-      item: { id: editTodoId, ...newTodo },
-      setState: setTodos,
-      onCleanup: setEditTodoId,
-    });
-  };
-
-  const onDeleteTodo = () =>
-    deleteItemFromArray({
-      list: todos,
-      id: deleteTodoId,
-      setState: setTodos,
-      onCleanup: setDeleteTodoId,
-    });
 
   return (
     <div className="App">
@@ -94,21 +92,23 @@ export const App = () => {
           onDelete={tagsState.delete}
         />
       )}
-      {deleteTodoId && (
+      {todosState.deleteId && (
         <PopupDelete
           title="Do you really want to delete this tag?"
-          onClose={() => setDeleteTodoId(null)}
-          onDelete={onDeleteTodo}
+          onClose={() => todosState.setDeleteId(null)}
+          onDelete={todosState.delete}
         />
       )}
-      {!!todoEditing && (
+      {!!todosState.todoEditing && (
         <PopupEdit
-          title={todoEditing?.title}
-          text={todoEditing?.text}
+          title={todosState.todoEditing?.title}
+          text={todosState.todoEditing?.text}
           tags={tagsState.data}
-          onClose={() => setEditTodoId(null)}
-          onSave={editTodoId === "new" ? onCreateTodo : onSaveTodo}
-          selectedTags={todoEditing?.tags}
+          onClose={() => todosState.setEditId(null)}
+          onSave={
+            todosState.editId === "new" ? todosState.create : todosState.update
+          }
+          selectedTags={todosState.todoEditing?.tags}
         />
       )}
       <header>
@@ -117,7 +117,7 @@ export const App = () => {
           icon="add"
           variant="icon"
           size="large"
-          onClick={() => setEditTodoId("new")}
+          onClick={() => todosState.setEditId("new")}
         />
       </header>
       <div>
@@ -143,16 +143,16 @@ export const App = () => {
         add new task
       </EditableButton>
       <div>
-        {todos.map((todo) => {
+        {todosState.data.map((todo) => {
           return (
             <TodoCard
               key={todo.id}
               title={todo.title}
               text={todo.text}
-              onDelete={() => setDeleteTodoId(todo.id)}
+              onDelete={() => todosState.setDeleteId(todo.id)}
               onClose={() => undefined}
-              onEdit={() => setEditTodoId(todo.id)}
-              onDoneChange={(done) => onSaveTodo({ ...todo, done })}
+              onEdit={() => todosState.setEditId(todo.id)}
+              onDoneChange={(done) => todosState.update({ ...todo, done })}
               done={todo.done}
               tags={tagsState.getParsedTags(todo.tags)}
             />
