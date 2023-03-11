@@ -43,6 +43,7 @@
   .tagsList {
     flex-direction: column;
     margin-bottom: 40px;
+    width: 200px;
   }
 }
 .main {
@@ -83,6 +84,7 @@
   flex-wrap: wrap;
   gap: 16px;
   justify-content: center;
+  height: 100%;
 }
 @media (min-width: 720px) {
   .todoList {

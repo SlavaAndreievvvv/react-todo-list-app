@@ -19,6 +19,12 @@
   --color-green: #a0ec83;
   --color-red: #ff4f4f;
   --color-red-2: #eb0404;
+
+  --bg-color: hsl(256, 33, 10);
+  --dot-color: hsl(256, 33, 70);
+
+  --dot-size: 1px;
+  --dot-space: 22px;
 }
 
 body,
@@ -36,6 +42,11 @@ h4,
 h5,
 h6 {
   font-family: var(--primary-font);
+}
+body {
+  background-image: radial-gradient(#ffdb21 1.5px, transparent 0);
+  background-size: 40px 40px;
+  background-position: -32px -32px;
 }
 
 * {
