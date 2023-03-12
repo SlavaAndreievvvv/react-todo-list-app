@@ -29,6 +29,12 @@ export const useTodo = () => {
   const [editId, setEditId] = useState(null);
   const [deleteId, setDeleteId] = useState(null);
 
+  const hideDoneTodos = () => {
+    const copyTodos = [...todos];
+    const doneTodo = copyTodos.filter((todo) => !todo.done);
+    setTodos(doneTodo);
+  };
+
   const onCreateTodo = useCallback(
     (newTodo) => {
       setTodos((prevState) => [
@@ -85,5 +91,6 @@ export const useTodo = () => {
     create: onCreateTodo,
     delete: onDeleteTodo,
     update: onSaveTodo,
+    hideDoneTodos,
   };
 };

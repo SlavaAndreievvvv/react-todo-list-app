@@ -87,9 +87,13 @@ export const App = () => {
           >
             add new task
           </EditableButton>
-          <Checkbox checked={null} onChange={null}>
+          <Checkbox
+            checked={todosState.done}
+            onChange={todosState.hideDoneTodos}
+          >
             Hide Done Task
           </Checkbox>
+          {/* <button onClick={todosState.hideDoneTodos}>hide</button> */}
         </div>
         <div className="todoList">
           {todosState.data.map((todo) => {
