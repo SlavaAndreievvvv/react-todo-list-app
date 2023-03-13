@@ -30,9 +30,10 @@ export const useTodo = () => {
   const [deleteId, setDeleteId] = useState(null);
 
   const hideDoneTodos = () => {
-    const copyTodos = [...todos];
-    const doneTodo = copyTodos.filter((todo) => !todo.done);
-    setTodos(doneTodo);
+    const shallowCopy = [...todos];
+    const toggleTodos = shallowCopy.filter((todo) => !todo.done);
+    setTodos(toggleTodos);
+    return true;
   };
 
   const onCreateTodo = useCallback(
