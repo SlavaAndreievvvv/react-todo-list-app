@@ -10,7 +10,21 @@
   --color-grey-3: #8a8e97;
   --color-grey-4: #c4c4c4;
   --color-grey-5: #6a6e74;
+  --color-grey-6: #535559;
   --color-blue: #d7dcff;
+  --color-purple: #bcb9ff;
+  --color-blue-2: #76b6ff;
+  --color-orange: #ff9960;
+  --color-orange-2: #fff8d5;
+  --color-green: #a0ec83;
+  --color-red: #ff4f4f;
+  --color-red-2: #eb0404;
+
+  --bg-color: hsl(256, 33, 10);
+  --dot-color: hsl(256, 33, 70);
+
+  --dot-size: 1px;
+  --dot-space: 22px;
 }
 
 body,
@@ -18,8 +32,21 @@ button,
 textarea,
 input,
 select,
-label {
+label,
+p,
+span,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--primary-font);
+}
+body {
+  background-image: radial-gradient(#ffdb21 1.5px, transparent 0);
+  background-size: 40px 40px;
+  background-position: -32px -32px;
 }
 
 * {

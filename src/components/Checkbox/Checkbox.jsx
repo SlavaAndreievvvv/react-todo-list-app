@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import PropTypes from "prop-types";
 import styles from "./Checkbox.module.css";
-import { Icon } from "../Icon";
+import { Icon, IconCheck } from "../Icon";
 
 export const Checkbox = ({ className, checked, onChange, children }) => {
   return (
@@ -14,7 +14,7 @@ export const Checkbox = ({ className, checked, onChange, children }) => {
       />
       <span className={styles.checkboxButton}>
         <span className={styles.checkboxIcon}>
-          <Icon name="checkbox" width={11} height={9} fill="white" />
+          <IconCheck width={11} height={9} fill="white" />
         </span>
       </span>
       <span className={styles.checkboxText}>{children}</span>

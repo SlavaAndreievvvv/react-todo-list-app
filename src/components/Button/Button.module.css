@@ -20,6 +20,28 @@
 .variant-primary:disabled {
   background-color: var(--color-grey-4);
 }
+.variant-danger {
+  width: 73px;
+  height: 32px;
+  background: var(--color-red);
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  color: var(--color-white);
+  transition: all 0.3s ease;
+}
+.variant-danger:hover {
+  background-color: var(--color-red-2);
+}
+.variant-danger:focus {
+  box-shadow: 0 0 0 2px var(--color-blue);
+  background: var(--color-red);
+}
+.variant-danger:disabled {
+  background-color: var(--color-grey-4);
+}
 .variant-text {
   font-weight: 500;
   font-size: 14px;
@@ -27,7 +49,7 @@
   color: var(--color-grey-5);
   background-color: transparent;
   cursor: pointer;
-  width: 97px;
+  padding: 0px 3px;
   height: 24px;
   border-radius: 8px;
   transition: all 0.3s ease;
@@ -37,7 +59,7 @@
 }
 .variant-text:focus {
   box-shadow: 0 0 0 2px var(--color-blue);
-  background-color: transparent;
+  color: var(--color-grey-5);
 }
 .variant-text:disabled {
   color: var(--color-grey-4);
@@ -50,39 +72,76 @@
   justify-content: center;
   align-items: center;
   border-radius: 6px;
-  fill: var(--color-grey-5);
 }
 .icon {
-  position: absolute;
+  transition: all 0.3s ease;
   width: 100%;
   height: 100%;
-  transition: all 0.3s ease;
+  fill: var(--color-grey-5);
 }
-.variant-icon:hover {
+.icon:hover {
   fill: var(--color-black-2);
 }
 .variant-icon:focus {
   box-shadow: 0 0 0 2px var(--color-blue);
+}
+.variant-icon:focus .icon {
   fill: var(--color-grey-5);
 }
-.icon-small {
-  width: 16px;
-  height: 4px;
-}
-.icon-medium {
-  width: 14px;
-  height: 14px;
-}
-.icon-large {
+.button-small {
   width: 20px;
   height: 20px;
 }
-.button-small {
-  padding: 8px 10px;
-}
 .button-medium {
-  padding: 12px 12px;
+  width: 20px;
+  height: 20px;
 }
 .button-large {
-  padding: 16px 16px;
+  width: 30px;
+  height: 30px;
+}
+.hasIcon {
+  margin-right: 6px;
+  width: 14px;
+  height: 14px;
+  transition: all 0.3s ease;
+}
+.variant-dashed {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: var(--color-grey-5);
+  background-color: var(--color-white);
+  cursor: pointer;
+  width: 160px;
+  height: 32px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  border: 1px dashed var(--color-grey-5);
+  position: relative;
+  transition: all 0.3s ease;
+}
+.variant-dashed:hover {
+  color: var(--color-black-2);
+  border: 1px dashed var(--color-black-2);
+}
+.variant-dashed:focus {
+  box-shadow: 0 0 0 2px var(--color-blue);
+  color: var(--color-grey-5);
+  border: 1px dashed var(--color-grey-5);
+}
+.variant-dashed:disabled {
+  color: var(--color-grey-4);
+}
+.variant-dashed:hover .hasIcon {
+  fill: var(--color-black-2);
+}
+.variant-dashed:focus .hasIcon {
+  fill: var(--color-grey-5);
+}
+.fluid {
+  min-width: 100%;
 }
