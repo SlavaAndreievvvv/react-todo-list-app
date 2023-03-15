@@ -28,14 +28,9 @@ export const useTodo = () => {
   ]);
   const [editId, setEditId] = useState(null);
   const [deleteId, setDeleteId] = useState(null);
-  const [hide, setHide] = useState(false);
+  const [doneTodo, setDoneTodo] = useState(false);
 
-  const hideDoneTodos = () => {
-    const shallowCopy = [...todos];
-    const toggleTodos = shallowCopy.filter((todo) => !todo.done);
-    setHide(!hide);
-    setTodos(!hide ? toggleTodos : shallowCopy);
-  };
+  const hideDoneTodos = doneTodo ? todos.filter((todo) => !todo.done) : todos;
 
   const onCreateTodo = useCallback(
     (newTodo) => {
@@ -94,7 +89,7 @@ export const useTodo = () => {
     delete: onDeleteTodo,
     update: onSaveTodo,
     hideDoneTodos,
-    hide,
-    setHide,
+    doneTodo,
+    setDoneTodo,
   };
 };

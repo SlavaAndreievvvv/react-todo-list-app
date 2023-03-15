@@ -33,7 +33,11 @@ export const PopupEdit = ({
   };
 
   const handleSave = () => {
-    onSave({ title: state.title, text: state.text, tags: state.selectedTags });
+    onSave({
+      title: state.title,
+      text: state.text,
+      tags: state.selectedTags,
+    });
   };
 
   const onSelectedTagsChange = (tagId) => {

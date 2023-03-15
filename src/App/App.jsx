@@ -34,7 +34,7 @@ export const App = () => {
       )}
       {todosState.deleteId && (
         <PopupDelete
-          title="Do you really want to delete this tag?"
+          title="Do you really want to delete this task?"
           onClose={() => todosState.setDeleteId(null)}
           onDelete={todosState.delete}
         />
@@ -88,15 +88,14 @@ export const App = () => {
             add new task
           </EditableButton>
           <Checkbox
-            checked={todosState.hide}
-            onChange={todosState.hideDoneTodos}
+            checked={todosState.doneTodo}
+            onChange={todosState.setDoneTodo}
           >
             Hide Done Task
           </Checkbox>
-          {/* <button onClick={todosState.hideDoneTodos}>hide</button> */}
         </div>
         <div className={styles.todoList}>
-          {todosState.data.map((todo) => {
+          {todosState.hideDoneTodos.map((todo) => {
             return (
               <TodoCard
                 key={todo.id}

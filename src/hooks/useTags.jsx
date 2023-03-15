@@ -31,6 +31,7 @@ export const useTags = () => {
           ({ name }) => name.toLowerCase() === tag.name.toLowerCase()
         ),
       }),
+
     [tags, setTags]
   );
 
@@ -47,6 +48,13 @@ export const useTags = () => {
 
   const onCreateNewTag = useCallback(
     async (name) => {
+      if (name.length <= 0) {
+        return null;
+      }
+      if (tags.some((tag) => tag.name === name)) {
+        alert(`Tag "${name}" already exists!`);
+        return null;
+      }
       const newTag = {
         id: Date.now(),
         name,
