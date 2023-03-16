@@ -44,9 +44,11 @@ h6 {
   font-family: var(--primary-font);
 }
 body {
-  background-image: radial-gradient(#ffdb21 1.5px, transparent 0);
-  background-size: 40px 40px;
-  background-position: -32px -32px;
+  background-image: -webkit-radial-gradient(#ffd900 1px, transparent 0),
+    -webkit-radial-gradient(#ffd900 1px, transparent 0);
+  background-position: 0 0, 25px 25px;
+  background-size: 50px 50px;
+  z-index: -1;
 }
 
 * {

@@ -17,11 +17,7 @@ import styles from "./App.module.css";
 
 export const App = () => {
   const tagsState = useTags();
-  const todosState = useTodo();
-
-  const onSave = async (value) => {
-    return true;
-  };
+  const todosState = useTodo(tagsState.activeId);
 
   return (
     <div className={styles.App}>
@@ -71,7 +67,8 @@ export const App = () => {
                   color={tag.color}
                   active={tagsState.activeId === tag.id}
                   isEditable
-                  onClick={() => tagsState.setActiveId(tag.id)}
+                  isActionsVisible={tagsState.deletingId === tag.id}
+                  onClick={() => tagsState.toggleActiveId(tag.id)}
                   onSave={(name) => tagsState.update({ ...tag, name })}
                   onDelete={() => tagsState.setDeletingId(tag.id)}
                 >
@@ -95,7 +92,7 @@ export const App = () => {
           </Checkbox>
         </div>
         <div className={styles.todoList}>
-          {todosState.hideDoneTodos.map((todo) => {
+          {todosState.todos.map((todo) => {
             return (
               <TodoCard
                 key={todo.id}
