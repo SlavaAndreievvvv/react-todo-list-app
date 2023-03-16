@@ -20,6 +20,7 @@
   line-height: 17px;
   color: var(--color-grey-5);
   margin-bottom: 16px;
+  word-break: break-all;
 }
 .done .cardText {
   text-decoration: line-through;
