@@ -33,18 +33,19 @@ export const useTodo = (activeTagId) => {
   const [doneTodo, setDoneTodo] = useState(false);
 
   const todos = useMemo(() => {
+    let result = [...todoList];
     if (doneTodo) {
-      return todoList.filter((todo) => !todo.done);
+      result = todoList.filter((todo) => !todo.done);
     }
     if (activeTagId) {
-      return todoList.filter(({ tags }) => tags.includes(activeTagId));
+      result = result.filter(({ tags }) => tags.includes(activeTagId));
     }
-    return todoList;
+    return result;
   }, [doneTodo, todoList, activeTagId]);
 
   useEffect(() => {
-    localStorage.setItem("todos", JSON.stringify(todos));
-  }, [todos]);
+    localStorage.setItem("todos", JSON.stringify(todoList));
+  }, [todoList]);
 
   const onCreateTodo = (newTodo) => {
     setTodoList((prevState) => [
