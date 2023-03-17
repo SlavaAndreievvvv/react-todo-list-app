@@ -1,31 +1,33 @@
-import { useCallback, useState, useMemo } from "react";
+import { useCallback, useState, useMemo, useEffect } from "react";
 import { editItemInArray } from "../utils/editItemInArray";
 import { deleteItemFromArray } from "../utils/deleteItemFromArray";
 
 export const useTodo = (activeTagId) => {
-  const [todoList, setTodoList] = useState([
-    {
-      id: 1,
-      title: "todo 1",
-      text: "text 1",
-      done: false,
-      tags: [1, 2],
-    },
-    {
-      id: 2,
-      title: "todo 2",
-      text: "text 2",
-      done: false,
-      tags: [1],
-    },
-    {
-      id: 3,
-      title: "todo 3",
-      text: "text 3",
-      done: true,
-      tags: [2, 3],
-    },
-  ]);
+  const [todoList, setTodoList] = useState(
+    JSON.parse(localStorage.getItem("todos")) ?? [
+      {
+        id: 1,
+        title: "todo 1",
+        text: "text 1",
+        done: false,
+        tags: [1, 2],
+      },
+      {
+        id: 2,
+        title: "todo 2",
+        text: "text 2",
+        done: false,
+        tags: [1],
+      },
+      {
+        id: 3,
+        title: "todo 3",
+        text: "text 3",
+        done: true,
+        tags: [2, 3],
+      },
+    ]
+  );
   const [editId, setEditId] = useState(null);
   const [deleteId, setDeleteId] = useState(null);
   const [doneTodo, setDoneTodo] = useState(false);
@@ -39,6 +41,10 @@ export const useTodo = (activeTagId) => {
     }
     return todoList;
   }, [doneTodo, todoList, activeTagId]);
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
 
   const onCreateTodo = (newTodo) => {
     setTodoList((prevState) => [
