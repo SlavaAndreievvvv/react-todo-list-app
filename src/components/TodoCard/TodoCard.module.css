@@ -1,5 +1,6 @@
 .card {
   max-width: 441px;
+  width: 100%;
   min-width: 343px;
   max-height: 100%;
   left: 20px;
@@ -20,6 +21,7 @@
   line-height: 17px;
   color: var(--color-grey-5);
   margin-bottom: 16px;
+  word-break: break-all;
 }
 .done .cardText {
   text-decoration: line-through;

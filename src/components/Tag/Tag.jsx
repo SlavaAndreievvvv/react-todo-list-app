@@ -16,6 +16,7 @@ export const Tag = ({
   onSave,
   onDelete,
   isEditable,
+  isActionsVisible,
 }) => {
   const {
     inputRef,
@@ -57,7 +58,7 @@ export const Tag = ({
             size="small"
           />
           <Button
-            className={styles.actionsButton}
+            className={styles.actions}
             onClick={onDelete}
             variant="icon"
             icon="trash"
@@ -66,12 +67,16 @@ export const Tag = ({
         </div>
       );
     }
+
     return null;
   };
 
   return (
     <div
-      className={clsx(styles.container, className, { [styles.active]: active })}
+      className={clsx(styles.container, className, {
+        [styles.active]: active,
+        [styles.actionsVisible]: isActionsVisible,
+      })}
     >
       <div className={styles.inner}>
         <ColorDot className={styles.color} color={color} />
@@ -96,4 +101,5 @@ Tag.propTypes = {
   onSave: PropTypes.func,
   onDelete: PropTypes.func,
   isEditable: PropTypes.bool,
+  isActionsVisible: PropTypes.bool,
 };

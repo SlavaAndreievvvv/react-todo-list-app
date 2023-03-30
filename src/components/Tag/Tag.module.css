@@ -9,6 +9,7 @@
 .active {
   background-color: var(--color-grey-2);
 }
+.actionsVisible .actions,
 .active .actions,
 .container:hover .actions {
   opacity: 1;

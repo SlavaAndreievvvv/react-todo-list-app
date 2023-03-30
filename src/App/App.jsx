@@ -1,6 +1,5 @@
 import PropTypes from "prop-types";
 import clsx from "clsx";
-import "./App.css";
 import { useEffect, useMemo, useState } from "react";
 import {
   Input,
@@ -14,17 +13,14 @@ import {
 } from "../components";
 import { useTags } from "../hooks/useTags";
 import { useTodo } from "../hooks/useTodo";
+import styles from "./App.module.css";
 
 export const App = () => {
   const tagsState = useTags();
-  const todosState = useTodo();
-
-  const onSave = async (value) => {
-    return true;
-  };
+  const todosState = useTodo(tagsState.activeId);
 
   return (
-    <div className="App">
+    <div className={styles.App}>
       {tagsState.deletingId && (
         <PopupDelete
           title="Do you really want to delete this tag?"
@@ -34,7 +30,7 @@ export const App = () => {
       )}
       {todosState.deleteId && (
         <PopupDelete
-          title="Do you really want to delete this tag?"
+          title="Do you really want to delete this task?"
           onClose={() => todosState.setDeleteId(null)}
           onDelete={todosState.delete}
         />
@@ -51,8 +47,8 @@ export const App = () => {
           selectedTags={todosState.todoEditing?.tags}
         />
       )}
-      <header className="header">
-        <h1 className="todoTitle">todo list</h1>
+      <header className={styles.header}>
+        <h1 className={styles.todoTitle}>todo list</h1>
         <Button
           icon="add"
           variant="icon"
@@ -60,18 +56,19 @@ export const App = () => {
           onClick={() => todosState.setEditId("new")}
         />
       </header>
-      <main className="main">
-        <div className="mainWrapper">
-          <div className="tagsList">
+      <main className={styles.main}>
+        <div className={styles.mainWrapper}>
+          <div className={styles.tagsList}>
             {tagsState.data.map((tag) => {
               return (
                 <Tag
-                  className="tag"
+                  className={styles.tag}
                   key={tag.id}
                   color={tag.color}
                   active={tagsState.activeId === tag.id}
                   isEditable
-                  onClick={() => tagsState.setActiveId(tag.id)}
+                  isActionsVisible={tagsState.deletingId === tag.id}
+                  onClick={() => tagsState.toggleActiveId(tag.id)}
                   onSave={(name) => tagsState.update({ ...tag, name })}
                   onDelete={() => tagsState.setDeletingId(tag.id)}
                 >
@@ -81,22 +78,21 @@ export const App = () => {
             })}
           </div>
           <EditableButton
-            className="EditableButton"
+            className={styles.EditableButton}
             icon="add"
             onSave={tagsState.create}
           >
             add new task
           </EditableButton>
           <Checkbox
-            checked={todosState.done}
-            onChange={todosState.hideDoneTodos}
+            checked={todosState.doneTodo}
+            onChange={todosState.setDoneTodo}
           >
             Hide Done Task
           </Checkbox>
-          {/* <button onClick={todosState.hideDoneTodos}>hide</button> */}
         </div>
-        <div className="todoList">
-          {todosState.data.map((todo) => {
+        <div className={styles.todoList}>
+          {todosState.todos.map((todo) => {
             return (
               <TodoCard
                 key={todo.id}

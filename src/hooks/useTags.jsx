@@ -1,18 +1,32 @@
-import { useCallback, useState } from "react";
+import { useCallback, useState, useEffect } from "react";
 import uniqolor from "uniqolor";
 import { editItemInArray } from "../utils/editItemInArray";
 import { deleteItemFromArray } from "../utils/deleteItemFromArray";
 
 export const useTags = () => {
-  const [tags, setTags] = useState([
-    { id: 1, color: "#BCB9FF", name: "work" },
-    { id: 2, color: "#76B6FF", name: "study" },
-    { id: 3, color: "#FF9960", name: "family" },
-    { id: 4, color: "#A0EC83", name: "entertainment" },
-  ]);
+  const [tags, setTags] = useState(
+    JSON.parse(localStorage.getItem("tags")) ?? [
+      { id: 1, color: "#BCB9FF", name: "work" },
+      { id: 2, color: "#76B6FF", name: "study" },
+      { id: 3, color: "#FF9960", name: "family" },
+      { id: 4, color: "#A0EC83", name: "entertainment" },
+    ]
+  );
+
+  useEffect(() => {
+    localStorage.setItem("tags", JSON.stringify(tags));
+  }, [tags]);
 
   const [deletingId, setDeletingId] = useState(null);
   const [activeId, setActiveId] = useState(null);
+
+  const toggleActiveId = (id) => {
+    if (activeId !== id) {
+      setActiveId(id);
+    } else {
+      setActiveId(null);
+    }
+  };
 
   const getParsedTags = useCallback(
     (tagIds = []) => {
@@ -31,6 +45,7 @@ export const useTags = () => {
           ({ name }) => name.toLowerCase() === tag.name.toLowerCase()
         ),
       }),
+
     [tags, setTags]
   );
 
@@ -47,6 +62,13 @@ export const useTags = () => {
 
   const onCreateNewTag = useCallback(
     async (name) => {
+      if (name.length <= 0) {
+        return null;
+      }
+      if (tags.some((tag) => tag.name === name)) {
+        alert(`Tag "${name}" already exists!`);
+        return null;
+      }
       const newTag = {
         id: Date.now(),
         name,
@@ -73,5 +95,6 @@ export const useTags = () => {
     create: onCreateNewTag,
     delete: onDeleteTag,
     update: onSaveTag,
+    toggleActiveId,
   };
 };
