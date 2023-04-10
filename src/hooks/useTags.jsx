@@ -9,7 +9,7 @@ export const useTags = () => {
       { id: 1, color: "#BCB9FF", name: "work" },
       { id: 2, color: "#76B6FF", name: "study" },
       { id: 3, color: "#FF9960", name: "family" },
-      { id: 4, color: "#A0EC83", name: "entertainment" },
+      { id: 4, color: "#A0EC83", name: "sport" },
     ]
   );
 
