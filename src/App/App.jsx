@@ -115,9 +115,9 @@ export const App = () => {
                   key={todo.id}
                   initial={{
                     opacity: 0,
-                    rotate: 360,
-                    translateX: 180,
-                    translateY: -180,
+                    rotate: 6,
+                    translateX: 30,
+                    translateY: -40,
                   }}
                   animate={{
                     opacity: 1,
@@ -127,11 +127,11 @@ export const App = () => {
                   }}
                   exit={{
                     opacity: 0,
-                    rotate: 360,
-                    translateX: 180,
-                    translateY: -180,
+                    rotate: 6,
+                    translateX: 30,
+                    translateY: -40,
                   }}
-                  transition={{ duration: 0.6 }}
+                  transition={{ duration: 0.5 }}
                 >
                   <TodoCard
                     title={todo.title}
