@@ -1,10 +1,10 @@
 import PropTypes from "prop-types";
 import clsx from "clsx";
-import { useState } from "react";
 import styles from "./TodoCard.module.css";
 import { Button } from "../Button";
 import { ColorDot } from "../ColorDot";
 import { Checkbox } from "../Checkbox";
+import { motion, Reorder } from "framer-motion";
 
 export const TodoCard = ({
   text,
@@ -16,7 +16,7 @@ export const TodoCard = ({
   onDoneChange,
 }) => {
   return (
-    <div className={clsx(styles.card, { [styles.done]: done })}>
+    <motion.div className={clsx(styles.card, { [styles.done]: done })}>
       <div className={styles.cardHeader}>
         <p className={styles.cardTitle}>{title}</p>
         <div className={styles.wrapperButton}>
@@ -52,7 +52,7 @@ export const TodoCard = ({
           Done
         </Checkbox>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

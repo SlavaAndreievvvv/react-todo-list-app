@@ -1,8 +1,4 @@
-import PropTypes from "prop-types";
-import clsx from "clsx";
-import { useEffect, useMemo, useState } from "react";
 import {
-  Input,
   Checkbox,
   Button,
   TodoCard,
@@ -14,6 +10,7 @@ import {
 import { useTags } from "../hooks/useTags";
 import { useTodo } from "../hooks/useTodo";
 import styles from "./App.module.css";
+import { motion, AnimatePresence } from "framer-motion";
 
 export const App = () => {
   const tagsState = useTags();
@@ -59,23 +56,42 @@ export const App = () => {
       <main className={styles.main}>
         <div className={styles.mainWrapper}>
           <div className={styles.tagsList}>
-            {tagsState.data.map((tag) => {
-              return (
-                <Tag
-                  className={styles.tag}
-                  key={tag.id}
-                  color={tag.color}
-                  active={tagsState.activeId === tag.id}
-                  isEditable
-                  isActionsVisible={tagsState.deletingId === tag.id}
-                  onClick={() => tagsState.toggleActiveId(tag.id)}
-                  onSave={(name) => tagsState.update({ ...tag, name })}
-                  onDelete={() => tagsState.setDeletingId(tag.id)}
-                >
-                  {tag.name}
-                </Tag>
-              );
-            })}
+            <AnimatePresence initial={false}>
+              {tagsState.data.map((tag) => {
+                return (
+                  <motion.div
+                    key={tag.id}
+                    initial={{
+                      opacity: 0,
+
+                      translateX: -160,
+                    }}
+                    animate={{
+                      opacity: 1,
+                      translateX: 0,
+                    }}
+                    exit={{
+                      opacity: 0,
+                      translateX: -160,
+                    }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <Tag
+                      className={styles.tag}
+                      color={tag.color}
+                      active={tagsState.activeId === tag.id}
+                      isEditable
+                      isActionsVisible={tagsState.deletingId === tag.id}
+                      onClick={() => tagsState.toggleActiveId(tag.id)}
+                      onSave={(name) => tagsState.update({ ...tag, name })}
+                      onDelete={() => tagsState.setDeletingId(tag.id)}
+                    >
+                      {tag.name}
+                    </Tag>
+                  </motion.div>
+                );
+              })}
+            </AnimatePresence>
           </div>
           <EditableButton
             className={styles.EditableButton}
@@ -92,21 +108,47 @@ export const App = () => {
           </Checkbox>
         </div>
         <div className={styles.todoList}>
-          {todosState.todos.map((todo) => {
-            return (
-              <TodoCard
-                key={todo.id}
-                title={todo.title}
-                text={todo.text}
-                onDelete={() => todosState.setDeleteId(todo.id)}
-                onClose={() => undefined}
-                onEdit={() => todosState.setEditId(todo.id)}
-                onDoneChange={(done) => todosState.update({ ...todo, done })}
-                done={todo.done}
-                tags={tagsState.getParsedTags(todo.tags)}
-              />
-            );
-          })}
+          <AnimatePresence initial={false}>
+            {todosState.todos.map((todo) => {
+              return (
+                <motion.div
+                  key={todo.id}
+                  initial={{
+                    opacity: 0,
+                    rotate: 360,
+                    translateX: 180,
+                    translateY: -180,
+                  }}
+                  animate={{
+                    opacity: 1,
+                    rotate: 0,
+                    translateX: 0,
+                    translateY: 0,
+                  }}
+                  exit={{
+                    opacity: 0,
+                    rotate: 360,
+                    translateX: 180,
+                    translateY: -180,
+                  }}
+                  transition={{ duration: 0.6 }}
+                >
+                  <TodoCard
+                    title={todo.title}
+                    text={todo.text}
+                    onDelete={() => todosState.setDeleteId(todo.id)}
+                    onClose={() => undefined}
+                    onEdit={() => todosState.setEditId(todo.id)}
+                    onDoneChange={(done) =>
+                      todosState.update({ ...todo, done })
+                    }
+                    done={todo.done}
+                    tags={tagsState.getParsedTags(todo.tags)}
+                  />
+                </motion.div>
+              );
+            })}
+          </AnimatePresence>
         </div>
       </main>
     </div>
