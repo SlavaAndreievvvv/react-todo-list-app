@@ -91,7 +91,9 @@
   flex-wrap: wrap;
   gap: 16px;
   justify-content: center;
+  max-height: 55vh;
   height: 100%;
+  overflow-y: scroll;
 }
 @media (min-width: 720px) {
   .todoList {

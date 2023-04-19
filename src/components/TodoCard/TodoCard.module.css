@@ -1,13 +1,16 @@
 .card {
-  max-width: 441px;
-  width: 100%;
-  min-width: 343px;
-  max-height: 100%;
+  width: 343px;
+  height: 100%;
   left: 20px;
   top: 20px;
   background: var(--color-orange-2);
   border-radius: 8px;
   padding: 16px 24px;
+}
+@media (min-width: 720px) {
+  .card {
+    width: 441px;
+  }
 }
 .cardTitle {
   font-weight: 500;
