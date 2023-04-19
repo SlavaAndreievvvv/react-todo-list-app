@@ -49,12 +49,12 @@ export const useTodo = (activeTagId) => {
 
   const onCreateTodo = (newTodo) => {
     setTodoList((prevState) => [
-      ...prevState,
       {
         id: Date.now(),
         done: false,
         ...newTodo,
       },
+      ...prevState,
     ]);
     setEditId(null);
   };
