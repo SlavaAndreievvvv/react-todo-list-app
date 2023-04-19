@@ -27,6 +27,16 @@
   --dot-space: 22px;
 }
 
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+html {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 body,
 button,
 textarea,
