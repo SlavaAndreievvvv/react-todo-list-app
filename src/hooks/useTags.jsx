@@ -65,6 +65,10 @@ export const useTags = () => {
       if (name.length <= 0) {
         return null;
       }
+      if (name.length > 12) {
+        alert(`max 12 letter`);
+        return null;
+      }
       if (tags.some((tag) => tag.name === name)) {
         alert(`Tag "${name}" already exists!`);
         return null;
@@ -78,7 +82,7 @@ export const useTags = () => {
           differencePoint: 100,
         }).color,
       };
-      setTags((prevState) => [...prevState, newTag]);
+      setTags((prevState) => [newTag, ...prevState]);
       return true;
     },
     [setTags]
