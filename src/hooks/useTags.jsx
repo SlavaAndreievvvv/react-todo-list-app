@@ -62,9 +62,6 @@ export const useTags = () => {
 
   const onCreateNewTag = useCallback(
     async (name) => {
-      if (name.length <= 0) {
-        return null;
-      }
       if (name.length > 12) {
         alert(`max 12 letter`);
         return null;
@@ -73,17 +70,19 @@ export const useTags = () => {
         alert(`Tag "${name}" already exists!`);
         return null;
       }
-      const newTag = {
-        id: Date.now(),
-        name,
-        color: uniqolor.random({
-          saturation: [35, 70],
-          lightness: 80,
-          differencePoint: 100,
-        }).color,
-      };
-      setTags((prevState) => [newTag, ...prevState]);
-      return true;
+      if (name.trim().length) {
+        const newTag = {
+          id: Date.now(),
+          name,
+          color: uniqolor.random({
+            saturation: [35, 70],
+            lightness: 80,
+            differencePoint: 100,
+          }).color,
+        };
+        setTags((prevState) => [newTag, ...prevState]);
+        return true;
+      }
     },
     [setTags]
   );
