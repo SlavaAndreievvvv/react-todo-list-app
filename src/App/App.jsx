@@ -98,7 +98,7 @@ export const App = () => {
             icon="add"
             onSave={tagsState.create}
           >
-            add new task
+            add new tag
           </EditableButton>
           <Checkbox
             checked={todosState.doneTodo}
